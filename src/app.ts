@@ -1,5 +1,6 @@
 import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
+import { studentRoutes } from './app/modules/student/student.route';
 const app: Application = express();
 const port = 3000;
 
@@ -7,8 +8,13 @@ const port = 3000;
 app.use(express.json());
 app.use(cors());
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('Hello World!');
-});
+//application routes
+app.use('/api/v1/students', studentRoutes);
+
+const getAController = (req: Request, res: Response) => {
+  res.send('Hello World');
+};
+
+app.get('/', getAController);
 
 export default app;
